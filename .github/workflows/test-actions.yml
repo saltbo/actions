@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  lang-go:
-    uses: saltbo/globalci/.github/workflows/go.yml@master
+  build-project-go:
+    uses: ./.github/actions/build-project-go
     with:
       username: saltbo
     secrets:
