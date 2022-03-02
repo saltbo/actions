@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-project-go:
-    uses: ./.github/actions/build-project-go
+    uses: ./.github/actions/build-project-go@master
     with:
       username: saltbo
     secrets:
