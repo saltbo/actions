@@ -1,9 +1,8 @@
 name: Call a reusable workflow
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    
 
 jobs:
   lang-go:
