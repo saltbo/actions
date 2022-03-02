@@ -1,0 +1,15 @@
+name: Call a reusable workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  call-workflow-passing-data:
+    uses: saltbo/globalci/.github/workflows/go.yml@master
+    with:
+      username: saltbo
+    secrets:
+      token: ${{ secrets.TOKEN }}
