@@ -11,6 +11,13 @@ on:
         required: true
 
 jobs:
+  build-project-go:
+    uses: ./.github/actions/build-project-go
+    with:
+      username: saltbo
+    secrets:
+      token: ${{ secrets.TOKEN }}
+
   test:
     name: Test
     runs-on: ubuntu-18.04
