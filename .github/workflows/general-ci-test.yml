@@ -5,10 +5,12 @@ on:
   pull_request:
     
 jobs:
-  lang-go:
+  general-ci:
     uses: saltbo/actions/.github/workflows/go.yml@master
     with:
       project-name: xxx
+      language: golang
       release-binary: true
+      release-docker-image: false
     # secrets:
     #   token: ${{ secrets.TOKEN }}

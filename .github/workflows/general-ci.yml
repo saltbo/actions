@@ -1,10 +1,13 @@
-name: General Go CI Action
+name: General CI Workflow
 
 on:
   # push:
   workflow_call:
     inputs:
       project-name:
+        required: true
+        type: string
+      language:
         required: true
         type: string
       release-binary:
@@ -46,10 +49,11 @@ jobs:
         with:
           repository: saltbo/actions
           path: ./.github/actions
-      - name: Build Project Go
-        uses: ./.github/actions/build-project-go
+      - name: Build binary
+        uses: ./.github/actions/build-binary
         with:
           name: ${{inputs.project-name}}
+          language: ${{inputs.language}}
 
   release-binary:
     if: ${{inputs.release-binary}}

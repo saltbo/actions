@@ -2,8 +2,11 @@ name: 'Build-Project-Go'
 description: 'Build a Go project'
 inputs:
   name:  # id of input
-    description: 'Project Name'
+    description: 'Project name'
     required: true
+  language: 
+    required: true
+    description: 'Project language'
 outputs:
   random-number:
     description: "Random number"
@@ -12,15 +15,10 @@ runs:
   using: "composite"
   steps:
     - name: Set up Go
+      if: ${{ inputs.language == 'golang' }}
       uses: actions/setup-go@v2
       with:
         go-version: 1.17.x
-    - run: echo Hello ${{ inputs.name }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash          
-    # - run: goodbye.sh
-    #   shell: bash
+    - name: Checkout and Build
+      uses: actions/checkout@v2
+      run: make build
