@@ -9,6 +9,7 @@ jobs:
     uses: saltbo/actions/.github/workflows/general-ci.yml@master
     with:
       project-name: xxx
+      project-src: examples/project-go
       language: golang
       release-binary: true
       release-image: true
