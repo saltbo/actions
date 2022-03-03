@@ -1,7 +1,7 @@
 name: General Go CI Action
 
 on:
-  push:
+  # push:
   workflow_call:
     inputs:
       username:

@@ -7,7 +7,7 @@ on:
 
 jobs:
   lang-go:
-    uses: saltbo/actions/.github/workflows/go.yml
+    uses: saltbo/actions/.github/workflows/go.yml@master
     with:
       username: saltbo
     secrets:
