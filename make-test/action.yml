@@ -4,6 +4,9 @@ inputs:
   language: 
     required: true
     description: 'Project language'
+  context:
+    description: 'Project src path'
+    required: true
 outputs:
   random-number:
     description: "Random number"
@@ -18,10 +21,10 @@ runs:
         go-version: 1.17.x
     - name: Build
       shell: bash
-      run: make build
+      run: cd ${{inputs.context}} && make build
     - name: Run Unit tests.
       shell: bash
-      run: make test
+      run: cd ${{inputs.context}} && make test
     - name: Upload Coverage report to CodeCov
       uses: codecov/codecov-action@v1
       with:
