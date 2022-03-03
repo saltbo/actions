@@ -1,0 +1,14 @@
+# todo designing
+
+version: 0.0.1
+name: project-go
+build: 
+  language: go
+  entry:
+    - cmd/server
+    - cmd/client
+release:
+  binary: true
+  docker-image: true
+  docker-registry-user: saltbo
+  docker-registry-passwd: ""

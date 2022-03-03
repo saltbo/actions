@@ -17,11 +17,14 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Set up Go
+    - name: Setup Go
       if: ${{ inputs.language == 'golang' }}
       uses: actions/setup-go@v2
       with:
         go-version: 1.17.x
+    - name: Setup Makefile
+      shell: bash
+      run: ln -s ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
     - name: Build
       shell: bash
       run: cd ${{inputs.context}} && make build
