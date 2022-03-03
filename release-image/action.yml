@@ -5,8 +5,8 @@ inputs:
     description: 'Project name'
     required: true
   language: 
-    required: true
     description: 'Project language'
+    required: true
   context:
     description: 'Project src path'
     required: true

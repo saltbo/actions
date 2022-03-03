@@ -24,7 +24,7 @@ runs:
       run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
     - name: Build
       shell: bash
-      run:  cd ${{inputs.context}} && make build
+      run: cd ${{inputs.context}} && make build
     - name: Run Unit tests.
       shell: bash
       run: cd ${{inputs.context}} && make test

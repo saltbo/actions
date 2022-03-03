@@ -78,6 +78,7 @@ jobs:
       - name: Image build and release
         uses: ./.github/actions/release-image
         with:
+          name: ${{inputs.project-name}}
           language: ${{inputs.language}}
           context: ${{inputs.project-src}}
           username: ${{inputs.dockerhub-user}}
