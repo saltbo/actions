@@ -1,9 +1,6 @@
 name: 'Build-Project-Go'
 description: 'Build a Go project'
 inputs:
-  name:  # id of input
-    description: 'Project name'
-    required: true
   language: 
     required: true
     description: 'Project language'
@@ -19,8 +16,13 @@ runs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17.x
-    - name: Checkout out code
+    - name: Check out code
       uses: actions/checkout@v2
-    - name: Build
+    - name: Run Unit tests.
       shell: bash
-      run: make build
+      run: make test
+    - name: Upload Coverage report to CodeCov
+      uses: codecov/codecov-action@v1
+      with:
+#          token: ${{secrets.CODECOV_TOKEN}}
+        file: .coverprofile
