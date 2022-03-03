@@ -11,6 +11,6 @@ jobs:
       project-name: xxx
       language: golang
       release-binary: true
-      release-docker-image: false
+      release-image: true
     # secrets:
     #   token: ${{ secrets.TOKEN }}
