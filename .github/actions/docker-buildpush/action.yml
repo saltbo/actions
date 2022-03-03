@@ -1,5 +1,5 @@
-name: 'Build-Project-Go'
-description: 'Build a go project'
+name: 'Docker Build Push'
+description: 'Greet someone'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'

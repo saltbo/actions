@@ -22,10 +22,6 @@ jobs:
           go-version: 1.17.x
       - name: Check out code
         uses: actions/checkout@v2
-      - name: build-project-go
-        uses: ./.github/actions/build-project-go
-        with:
-          username: saltbo
       - name: Run Unit tests.
         run: make test
       - name: Upload Coverage report to CodeCov
@@ -44,5 +40,10 @@ jobs:
           go-version: 1.17.x
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Build
-        run: make build
+        with:
+          repository: saltbo/actions
+          path: /actions
+      - name: build-project-go
+        uses: /actions/.github/actions/build-project-go
+        with:
+          username: saltbo
