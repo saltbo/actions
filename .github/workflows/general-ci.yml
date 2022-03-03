@@ -17,9 +17,9 @@ on:
         required: false
         type: boolean
     secrets:
-      DOCKERHUB_USERNAME:
+      dockerhub-user:
         required: true
-      DOCKERHUB_TOKEN:
+      dockerhub-passwd:
         required: true
 
 jobs:
