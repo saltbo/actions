@@ -1,12 +1,14 @@
 FROM golang:1.17
 
-ENV APP_HOME /app
+ARG PROJECT_NAME=app
+ENV APP_HOME /srv
 WORKDIR $APP_HOME
 
 COPY go.* $APP_HOME/
 RUN go mod download
 
 COPY . .
-RUN BINNAME=cmd make build && make install
+ENV BINNAME ${PROJECT_NAME}
+RUN make build && make install
 
-ENTRYPOINT ["/app/cmd"]
+CMD ["/srv/build/${PROJECT_NAME}"]

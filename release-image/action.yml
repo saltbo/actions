@@ -1,6 +1,9 @@
 name: 'Docker Build Push'
 description: 'Greet someone'
 inputs:
+  name:
+    description: 'Project name'
+    required: true
   language: 
     required: true
     description: 'Project language'
@@ -36,5 +39,7 @@ runs:
     with:
       context: ${{ inputs.context }}
       file: ./.github/actions/dockerfiles/${{inputs.language}}/Dockerfile
+      build-args:
+        PROJECT_NAME: ${{ inputs.name }}
       push: true
       tags: ${{ inputs.tags }}
