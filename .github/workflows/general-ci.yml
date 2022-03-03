@@ -69,4 +69,6 @@ jobs:
       - name: Release Image
         uses: ./.github/actions/release-image
         with:
+          username: ${{secrets.dockerhub-user}}
+          password: ${{secrets.dockerhub-passwd}}
           tags: "saltbo/action-test"

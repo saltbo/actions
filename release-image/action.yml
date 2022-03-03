@@ -1,6 +1,12 @@
 name: 'Docker Build Push'
 description: 'Greet someone'
 inputs:
+  username:
+    required: true
+    description: 'dockerhub username'
+  password:
+    required: true
+    description: 'dockerhub password'
   tags:  # id of input
     description: 'Docker image tags'
     required: true
@@ -17,8 +23,8 @@ runs:
   - name: Login to DockerHub
     uses: docker/login-action@v1
     with:
-      username: ${{ secrets.DOCKERHUB_USERNAME }}
-      password: ${{ secrets.DOCKERHUB_TOKEN }}
+      username: ${{ inputs.username }}
+      password: ${{ inputs.password }}
   - name: Build and push
     uses: docker/build-push-action@v2
     with:
