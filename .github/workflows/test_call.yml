@@ -9,5 +9,5 @@ jobs:
     uses: saltbo/actions/.github/workflows/go.yml@master
     with:
       project-name: xxx
-    secrets:
-      token: ${{ secrets.TOKEN }}
+    # secrets:
+    #   token: ${{ secrets.TOKEN }}
