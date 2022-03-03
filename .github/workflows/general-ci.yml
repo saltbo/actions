@@ -16,11 +16,12 @@ on:
       release-image:
         required: false
         type: boolean
-    secrets:
       dockerhub-user:
-        required: true
+        required: false
+        type: boolean
+    secrets:
       dockerhub-passwd:
-        required: true
+        required: false
 
 jobs:
 
@@ -69,6 +70,7 @@ jobs:
       - name: Release Image
         uses: ./.github/actions/release-image
         with:
-          username: ${{secrets.dockerhub-user}}
+          language: ${{inputs.language}}
+          username: ${{inputs.dockerhub-user}}
           password: ${{secrets.dockerhub-passwd}}
-          tags: "saltbo/action-test"
+          tags: ${{inputs.dockerhub-user}}/${{inputs.project-name}}

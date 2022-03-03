@@ -12,6 +12,6 @@ jobs:
       language: golang
       release-binary: true
       release-image: true
-    secrets:
       dockerhub-user: saltbo
+    secrets:
       dockerhub-passwd: ${{ secrets.DOCKERHUB_PASSWD }}
