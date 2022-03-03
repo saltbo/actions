@@ -3,3 +3,6 @@ test:
 
 build:
 	echo "build success"
+
+install:
+	echo "install success"

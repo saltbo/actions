@@ -4,6 +4,9 @@ inputs:
   language: 
     required: true
     description: 'Project language'
+  context:
+    description: 'Project src path'
+    required: true
   username:
     required: true
     description: 'dockerhub username'
@@ -31,7 +34,7 @@ runs:
   - name: Build and push
     uses: docker/build-push-action@v2
     with:
-      context: .
+      context: ${{ inputs.context }}
       file: ./.github/actions/dockerfiles/${{inputs.language}}/Dockerfile
       push: true
       tags: ${{ inputs.tags }}

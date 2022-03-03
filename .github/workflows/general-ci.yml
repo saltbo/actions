@@ -7,6 +7,10 @@ on:
       project-name:
         required: true
         type: string
+      project-src:
+        required: false
+        type: string
+        default: "."
       language:
         required: true
         type: string
@@ -52,8 +56,10 @@ jobs:
         with:
           repository: saltbo/actions
           path: ./.github/actions
-      - name: Release Binary
+      - name: Binary build and release
         uses: ./.github/actions/release-binary
+        with:
+          path: ${{inputs.project-src}}
 
   release-image:
     if: ${{inputs.release-image}}
@@ -67,9 +73,10 @@ jobs:
         with:
           repository: saltbo/actions
           path: ./.github/actions
-      - name: Release Image
+      - name: Image build and release
         uses: ./.github/actions/release-image
         with:
+          context: ${{inputs.project-src}}
           language: ${{inputs.language}}
           username: ${{inputs.dockerhub-user}}
           password: ${{secrets.dockerhub-passwd}}
