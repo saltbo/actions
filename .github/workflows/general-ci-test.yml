@@ -1,4 +1,4 @@
-name: GoProjectDemo
+name: GeneralCITest
 
 on:
   push:
