@@ -16,9 +16,11 @@ on:
       release-image:
         required: false
         type: boolean
-    # secrets:
-    #   token:
-    #     required: true
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
 
 jobs:
 
@@ -66,3 +68,5 @@ jobs:
           path: ./.github/actions
       - name: Release Image
         uses: ./.github/actions/release-image
+        with:
+          tags: "saltbo/action-test"
