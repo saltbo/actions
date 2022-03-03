@@ -11,6 +11,10 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17.x
     - run: echo Hello ${{ inputs.name }}.
       shell: bash
     - id: random-number-generator

@@ -9,5 +9,6 @@ jobs:
     uses: saltbo/actions/.github/workflows/go.yml@master
     with:
       project-name: xxx
+      release-binary: true
     # secrets:
     #   token: ${{ secrets.TOKEN }}

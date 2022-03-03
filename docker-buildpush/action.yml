@@ -1,23 +1,27 @@
 name: 'Docker Build Push'
 description: 'Greet someone'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  tags:  # id of input
+    description: 'Docker image tags'
     required: true
-    default: 'World'
+
 outputs:
   random-number:
     description: "Random number"
     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
+  # using: 'docker'
+  # image: 'Dockerfile'
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash          
-    - run: goodbye.sh
-      shell: bash
+  - name: Login to DockerHub
+    uses: docker/login-action@v1
+    with:
+      username: ${{ secrets.DOCKERHUB_USERNAME }}
+      password: ${{ secrets.DOCKERHUB_TOKEN }}
+  - name: Build and push
+    uses: docker/build-push-action@v2
+    with:
+      context: .
+      push: true
+      tags: ${{ inputs.tags }}

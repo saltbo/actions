@@ -7,6 +7,12 @@ on:
       project-name:
         required: true
         type: string
+      release-binary:
+        required: false
+        type: boolean
+      release-docker-image:
+        required: false
+        type: boolean
     # secrets:
     #   token:
     #     required: true
@@ -35,16 +41,38 @@ jobs:
     runs-on: ubuntu-18.04
     needs: [test]
     steps:
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17.x
-      - name: Check out code
+      - name: Check out actions
         uses: actions/checkout@v2
         with:
           repository: saltbo/actions
           path: ./.github/actions
-      - name: build-project-go
+      - name: Build Project Go
         uses: ./.github/actions/build-project-go
         with:
           name: ${{inputs.project-name}}
+
+  release-binary:
+    if: ${{inputs.release-binary}}
+    runs-on: ubuntu-18.04
+    needs: [build]
+    steps:
+      - name: Check out actions
+        uses: actions/checkout@v2
+        with:
+          repository: saltbo/actions
+          path: ./.github/actions
+      - name: Release Binary
+        uses: ./.github/actions/release-binary
+
+  release-docker-image:
+    if: ${{inputs.release-docker-image}}
+    runs-on: ubuntu-18.04
+    needs: [build]
+    steps:
+      - name: Check out actions
+        uses: actions/checkout@v2
+        with:
+          repository: saltbo/actions
+          path: ./.github/actions
+      - name: Release Docker Image
+        uses: ./.github/actions/release-docker-image
