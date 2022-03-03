@@ -1,3 +1,5 @@
+.PHONY: clean
+
 PROJECT_NAME="project-go"
 
 ifndef BINNAME
@@ -13,3 +15,7 @@ build:
 install:
 	go build -o build/$(BINNAME)
 	echo "install success"
+
+clean:
+	rm -rf build
+	echo "clean success"

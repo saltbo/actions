@@ -21,7 +21,7 @@ runs:
         go-version: 1.17.x
     - name: Setup Makefile
       shell: bash
-      run: ln -s ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
+      run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
     - name: Build
       shell: bash
       run:  cd ${{inputs.context}} && make build
