@@ -23,7 +23,6 @@ on:
 jobs:
 
   test:
-    name: Test
     runs-on: ubuntu-18.04
     steps:
       - name: Check out code
@@ -34,22 +33,23 @@ jobs:
           repository: saltbo/actions
           path: ./.github/actions
       - name: MakeTest
-        uses: ./.github/actions/unit-test
+        uses: ./.github/actions/make-test
         with:
           language: ${{inputs.language}}
 
   build:
-    name: Build
     runs-on: ubuntu-18.04
     needs: [test]
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Check out actions
         uses: actions/checkout@v2
         with:
           repository: saltbo/actions
           path: ./.github/actions
       - name: Build binary
-        uses: ./.github/actions/build-binary
+        uses: ./.github/actions/make-build
         with:
           name: ${{inputs.project-name}}
           language: ${{inputs.language}}
@@ -65,7 +65,7 @@ jobs:
           repository: saltbo/actions
           path: ./.github/actions
       - name: Release Binary
-        uses: ./.github/actions/release-binary
+        uses: ./.github/actions/make-release
 
   release-docker-image:
     if: ${{inputs.release-docker-image}}
@@ -78,4 +78,4 @@ jobs:
           repository: saltbo/actions
           path: ./.github/actions
       - name: Release Docker Image
-        uses: ./.github/actions/release-docker-image
+        uses: ./.github/actions/docker-image-release
