@@ -24,3 +24,6 @@ runs:
       with:
 #          token: ${{secrets.CODECOV_TOKEN}}
         file: .coverprofile
+    - name: Build
+      shell: bash
+      run: make build
