@@ -39,7 +39,7 @@ runs:
     with:
       context: ${{ inputs.context }}
       file: ./.github/actions/dockerfiles/${{inputs.language}}/Dockerfile
-      build-args:
-        - PROJECT_NAME=${{ inputs.project-name }}
+      build-args: |
+        PROJECT_NAME=${{ inputs.project-name }}
       push: true
       tags: ${{ inputs.tags }}
