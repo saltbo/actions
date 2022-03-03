@@ -6,7 +6,7 @@ on:
     
 jobs:
   general-ci:
-    uses: saltbo/actions/.github/workflows/go.yml@master
+    uses: saltbo/actions/.github/workflows/general-ci.yml@master
     with:
       project-name: xxx
       language: golang
