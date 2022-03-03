@@ -1,10 +1,9 @@
 name: 'Build-Project-Go'
-description: 'Build a go project'
+description: 'Build a Go project'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  name:  # id of input
+    description: 'Project Name'
     required: true
-    default: 'World'
 outputs:
   random-number:
     description: "Random number"
@@ -12,12 +11,12 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo Hello ${{ inputs.name }}.
       shell: bash
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       shell: bash          
-    - run: goodbye.sh
-      shell: bash
+    # - run: goodbye.sh
+    #   shell: bash

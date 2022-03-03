@@ -1,14 +1,13 @@
-name: Call a reusable workflow
+name: GoProjectDemo
 
 on:
   push:
   pull_request:
     
-
 jobs:
   lang-go:
     uses: saltbo/actions/.github/workflows/go.yml@master
     with:
-      username: saltbo
+      project-name: xxx
     secrets:
       token: ${{ secrets.TOKEN }}

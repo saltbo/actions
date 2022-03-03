@@ -4,12 +4,12 @@ on:
   # push:
   workflow_call:
     inputs:
-      username:
+      project-name:
         required: true
         type: string
-    secrets:
-      token:
-        required: true
+    # secrets:
+    #   token:
+    #     required: true
 
 jobs:
 
@@ -47,4 +47,4 @@ jobs:
       - name: build-project-go
         uses: ./.github/actions/build-project-go
         with:
-          username: saltbo
+          name: ${{inputs.project-name}}
