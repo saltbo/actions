@@ -26,13 +26,15 @@ jobs:
     name: Test
     runs-on: ubuntu-18.04
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Check out actions
         uses: actions/checkout@v2
         with:
           repository: saltbo/actions
           path: ./.github/actions
       - name: MakeTest
-        uses: ./.github/actions/maketest
+        uses: ./.github/actions/unit-test
         with:
           language: ${{inputs.language}}
 

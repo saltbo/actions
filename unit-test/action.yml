@@ -16,8 +16,6 @@ runs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.17.x
-    - name: Check out code
-      uses: actions/checkout@v2
     - name: Run Unit tests.
       shell: bash
       run: make test
