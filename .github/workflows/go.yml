@@ -43,8 +43,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: saltbo/actions
-          path: /actions
+          path: .github/actions
       - name: build-project-go
-        uses: /actions/.github/actions/build-project-go
+        uses: .github/actions/.github/actions/build-project-go
         with:
           username: saltbo
