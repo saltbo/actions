@@ -45,6 +45,6 @@ jobs:
           repository: saltbo/actions
           path: .github/actions
       - name: build-project-go
-        uses: .github/actions/.github/actions/build-project-go
+        uses: ./.github/actions/.github/actions/build-project-go
         with:
           username: saltbo
