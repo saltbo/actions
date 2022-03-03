@@ -1,6 +1,7 @@
 name: Call a reusable workflow
 
 on:
+  push:
   pull_request:
     
 
