@@ -29,6 +29,9 @@ runs:
   # using: 'docker'
   # image: 'Dockerfile'
   steps:
+  - name: Setup Makefile
+    shell: bash
+    run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
   - name: Login to DockerHub
     uses: docker/login-action@v1
     with:
