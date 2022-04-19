@@ -17,8 +17,7 @@ async function run() {
       const [owner, repo] = repoFullName.split("/")
       const octokit = github.getOctokit(ghToken)
       let response = await octokit.rest.repos.get({ owner, repo })
-      let repoInfo = response.data
-      repoResults.push({ name: repoInfo.name, description: repoInfo.description, language: repoInfo.language, stargazers_count: repoInfo.stargazers_count })
+      repoResults.push(response.data)
     }
 
     const outputFileAbsPath = path.join(process.cwd(), outputFile)
