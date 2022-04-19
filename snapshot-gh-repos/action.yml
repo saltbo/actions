@@ -1,0 +1,13 @@
+name: 'snapshot-gh-repos'
+description: 'Snapshot the github repos info'
+inputs:
+  repos:
+    description: "Repos what you want to sync"
+    required: true
+  outputFile:
+    description: "Output filepath for the repos"
+    required: false
+    default: "repos-snapshot.json"
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
