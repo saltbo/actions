@@ -11,6 +11,8 @@ async function run() {
     const ghToken = core.getInput('ghToken')
     const reposArray = repos.split(",")
 
+    console.log(ghToken)
+    core.info(ghToken)
     let repoResults = new Array()
     for (let idx = 0; idx < reposArray.length; idx++) {
       const repoFullName = reposArray[idx];
