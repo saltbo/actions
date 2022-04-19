@@ -3,8 +3,7 @@ description: 'Snapshot the github repos info'
 inputs:
   ghToken:
     description: "Token of github to use fetch repos"
-    required: false
-    default: ${{ secrets.GITHUB_TOKEN }}
+    required: true
   repos:
     description: "Repos what you want to sync"
     required: true
