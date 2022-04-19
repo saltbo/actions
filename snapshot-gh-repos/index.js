@@ -11,8 +11,6 @@ async function run() {
     const ghToken = core.getInput('ghToken')
     const reposArray = repos.split(",")
 
-    console.log(ghToken)
-    core.info(ghToken)
     let repoResults = new Array()
     for (let idx = 0; idx < reposArray.length; idx++) {
       const repoFullName = reposArray[idx];
@@ -27,7 +25,6 @@ async function run() {
     fs.writeFile(outputFileAbsPath, JSON.stringify(repoResults))
     core.info("repos has output to the file " + outputFileAbsPath)
   } catch (error) {
-    console.log(error)
     core.setFailed(error.message);
   }
 
