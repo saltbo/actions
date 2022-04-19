@@ -8,8 +8,7 @@ async function run() {
   try {
     const repos = core.getInput("repos")
     const outputFile = core.getInput('outputFile') || 'snapshot-repos.json'
-    const outputFileAbsPath = path.join(process.cwd(), outputFile)
-    const ghToken = process.env['GITHUB_TOKEN'] || core.getInput('ghToken')
+    const ghToken = core.getInput('ghToken') || process.env['GITHUB_TOKEN']
     const reposArray = repos.split(",")
 
     let repoResults = new Array()
@@ -21,6 +20,8 @@ async function run() {
       let repoInfo = response.data
       repoResults.push({ name: repoInfo.name, description: repoInfo.description, language: repoInfo.language, stargazers_count: repoInfo.stargazers_count })
     }
+    
+    const outputFileAbsPath = path.join(process.cwd(), outputFile)
     fs.writeFile(outputFileAbsPath, JSON.stringify(repoResults))
     core.info("repos has output to the file " + outputFileAbsPath)
   } catch (error) {
