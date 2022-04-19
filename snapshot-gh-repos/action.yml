@@ -4,7 +4,7 @@ inputs:
   repos:
     description: "Repos what you want to sync"
     required: true
-  githubToken:
+  ghToken:
     description: "Token of github to use fetch repos"
     required: true
   outputFile:
