@@ -1,11 +1,11 @@
 name: 'snapshot-gh-repos'
 description: 'Snapshot the github repos info'
 inputs:
-  ghToken:
-    description: "Token of github to use fetch repos"
-    required: true
   repos:
     description: "Repos what you want to sync"
+    required: true
+  githubToken:
+    description: "Token of github to use fetch repos"
     required: true
   outputFile:
     description: "Output filepath for the repos"

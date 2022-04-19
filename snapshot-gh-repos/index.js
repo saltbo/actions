@@ -8,7 +8,7 @@ async function run() {
   try {
     const repos = core.getInput("repos")
     const outputFile = core.getInput('outputFile') || 'snapshot-repos.json'
-    const ghToken = core.getInput('ghToken') || process.env['GITHUB_TOKEN']
+    const ghToken = core.getInput('ghToken')
     const reposArray = repos.split(",")
 
     let repoResults = new Array()
