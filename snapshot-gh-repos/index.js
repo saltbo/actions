@@ -14,13 +14,13 @@ async function run() {
     let repoResults = new Array()
     for (let idx = 0; idx < reposArray.length; idx++) {
       const repoFullName = reposArray[idx];
-      const octokit = github.getOctokit(ghToken)
       const [owner, repo] = repoFullName.split("/")
+      const octokit = github.getOctokit(ghToken)
       let response = await octokit.rest.repos.get({ owner, repo })
       let repoInfo = response.data
       repoResults.push({ name: repoInfo.name, description: repoInfo.description, language: repoInfo.language, stargazers_count: repoInfo.stargazers_count })
     }
-    
+
     const outputFileAbsPath = path.join(process.cwd(), outputFile)
     fs.writeFile(outputFileAbsPath, JSON.stringify(repoResults))
     core.info("repos has output to the file " + outputFileAbsPath)
