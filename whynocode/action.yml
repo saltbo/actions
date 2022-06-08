@@ -1,0 +1,13 @@
+name: 'whynocode'
+description: 'Why nocode commit?'
+inputs:
+  user:
+    description: "user"
+    required: true
+  chatID:
+    description: "chatID of telegram"
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
