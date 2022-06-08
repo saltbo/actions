@@ -7,7 +7,7 @@ async function run() {
   try {
     const user = core.getInput("user")
     const chatID = core.getInput("chatID")
-    const ghToken = core.getInput('ghToken') || process.env["GITHUB_TOKEN"]
+    const ghToken = process.env["GITHUB_TOKEN"]
     const octokit = github.getOctokit(ghToken)
 
     const {
