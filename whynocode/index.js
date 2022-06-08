@@ -5,41 +5,43 @@ const axios = require('axios');
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const user = core.getInput("user")
+    const username = core.getInput("user")
     const chatID = core.getInput("chatID")
     const ghToken = process.env["GITHUB_TOKEN"]
     const octokit = github.getOctokit(ghToken)
 
-    const {
-      user: { contributionsCollection },
-    } = await octokit.graphql(`{
-      user(login: "saltbo") {
-        contributionsCollection {
-          endedAt
-          contributionCalendar {
-            weeks {
-              contributionDays {
-                contributionCount
-                date
-                weekday
+    const { user } = await octokit.graphql(`
+      query ($username: String!) {
+        user(login: $username) {
+          contributionsCollection {
+            endedAt
+            contributionCalendar {
+              weeks {
+                contributionDays {
+                  contributionCount
+                  date
+                  weekday
+                }
               }
             }
           }
         }
       }
-    }`);
-    const latestWeek = contributionsCollection.contributionCalendar.weeks.reverse()[0];
+    `, { username });
+
+    const latestWeek = user.contributionsCollection.contributionCalendar.weeks.reverse()[0];
     const todayCount = latestWeek.contributionDays.map(el => el.contributionCount).reverse()[0]
+    core.debug(latestWeek.contributionDays)
     if (todayCount == 0) {
-      axios.post('https://lambda.saltbo.fun/senders/bot-timefriend-sender\?chatID\=527035525', 'Why no code commit today?')
+      axios.post('https://lambda.saltbo.fun/senders/bot-timefriend-sender\?chatID\=' + chatID, 'Why no code commit today?')
+      core.info("Ask done.")
       return
     }
 
-    core.info("commited")
+    core.info("Already commited today, skip ask.")
   } catch (error) {
     core.setFailed(error.message);
   }
-
 }
 
 run();
