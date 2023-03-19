@@ -23,7 +23,7 @@ runs:
       if: ${{ inputs.language == 'nodejs' || inputs.language == 'wails' }}
       uses: actions/setup-node@v3
       with:
-        node-version: 14
+        node-version: 16
     - name: Setup Makefile
       shell: bash
       run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
