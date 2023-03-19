@@ -21,7 +21,7 @@ runs:
       if: ${{ inputs.language == 'golang' }}
       uses: actions/setup-go@v2
       with:
-        go-version: 1.17.x
+        go-version: 1.19.x
     - name: Setup Makefile
       shell: bash
       run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
