@@ -15,7 +15,7 @@ runs:
   using: "composite"
   steps:
     - name: Setup Go
-      if: ${{ inputs.language == 'golang' }}
+      if: ${{ inputs.language == 'golang' || inputs.language == 'wails' }}
       uses: actions/setup-go@v2
       with:
         go-version: 1.19.x
