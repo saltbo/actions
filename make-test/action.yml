@@ -19,6 +19,11 @@ runs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.19.x
+    - name: Setup Nodejs
+      if: ${{ inputs.language == 'nodejs' || inputs.language == 'wails' }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
     - name: Setup Makefile
       shell: bash
       run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
