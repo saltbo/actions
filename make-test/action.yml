@@ -24,9 +24,9 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: Setup Makefile
-      shell: bash
-      run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
+    # - name: Setup Makefile
+    #   shell: bash
+    #   run: cp ./.github/actions/languages/${{inputs.language}}/Makefile ${{inputs.context}}
     - name: Build
       shell: bash
       run: cd ${{inputs.context}} && make build
